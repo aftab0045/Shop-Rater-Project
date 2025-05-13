@@ -13,11 +13,11 @@ const StoreOwnerDashboard = () => {
   const [usersWhoRated, setUsersWhoRated] = useState([]);
 
   useEffect(() => {
-    // Fetch stores owned by the current user
+  
     if (currentUser?.id) {
       const userStores = getStoresByOwnerId(currentUser.id);
       
-      // Enhance store data with average rating
+      
       const enhancedStores = userStores.map(store => ({
         ...store,
         averageRating: getAverageRatingForStore(store.id)
@@ -25,7 +25,7 @@ const StoreOwnerDashboard = () => {
       
       setStores(enhancedStores);
       
-      // Set the first store as selected by default
+  
       if (enhancedStores.length > 0 && !selectedStore) {
         setSelectedStore(enhancedStores[0]);
       }
@@ -33,7 +33,7 @@ const StoreOwnerDashboard = () => {
   }, [currentUser, getStoresByOwnerId, getAverageRatingForStore, selectedStore]);
 
   useEffect(() => {
-    // Fetch users who rated the selected store
+   
     if (selectedStore) {
       const ratingUsers = getUsersWhoRatedStore(selectedStore.id);
       setUsersWhoRated(ratingUsers);

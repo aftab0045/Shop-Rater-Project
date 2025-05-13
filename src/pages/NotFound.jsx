@@ -15,7 +15,7 @@ const NotFound = () => {
     );
   }, [location.pathname]);
 
-  // Determine where to redirect based on user role
+ 
   const getHomeLink = () => {
     if (!currentUser) {
       return "/login";

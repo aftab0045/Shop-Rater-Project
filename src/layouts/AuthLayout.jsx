@@ -6,7 +6,7 @@ const AuthLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // If user is already logged in, redirect to dashboard
+    
     const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
     const userRole = localStorage.getItem("userRole");
     

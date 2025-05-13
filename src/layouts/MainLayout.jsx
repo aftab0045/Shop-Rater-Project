@@ -23,7 +23,7 @@ const MainLayout = () => {
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    // Check if user is logged in
+    
     const authStatus = localStorage.getItem("isAuthenticated") === "true";
     const role = localStorage.getItem("userRole");
     
@@ -57,7 +57,9 @@ const MainLayout = () => {
     );
   };
 
-  // Navigation items based on role
+  
+
+
   const getNavItems = () => {
     const commonItems = [
       {
@@ -71,6 +73,8 @@ const MainLayout = () => {
         icon: null,
       },
     ];
+
+
 
     switch (userRole) {
       case "admin":
@@ -120,7 +124,8 @@ const MainLayout = () => {
     }
   };
 
-  // If not authenticated, don't render anything until redirect happens
+
+  
   if (!isAuthenticated) {
     return null;
   }

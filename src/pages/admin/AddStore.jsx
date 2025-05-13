@@ -25,12 +25,11 @@ const AddStore = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Fetch store owners for the dropdown
+   
     const users = getUsers();
     const owners = users.filter(user => user.role === "store_owner");
     setStoreOwners(owners);
     
-    // Set first owner as default if available
     if (owners.length > 0 && !formData.ownerId) {
       setFormData(prev => ({ ...prev, ownerId: owners[0].id }));
     }
@@ -44,7 +43,6 @@ const AddStore = () => {
   const validate = () => {
     const newErrors = {};
     
-    // Name validation (20-60 characters)
     if (!formData.name) {
       newErrors.name = "Store name is required";
     } else if (formData.name.length < 20) {
@@ -53,21 +51,21 @@ const AddStore = () => {
       newErrors.name = "Store name cannot exceed 60 characters";
     }
     
-    // Email validation
+  
     if (!formData.email) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
     
-    // Address validation (max 400 characters)
+    
     if (!formData.address) {
       newErrors.address = "Address is required";
     } else if (formData.address.length > 400) {
       newErrors.address = "Address cannot exceed 400 characters";
     }
     
-    // Owner validation
+
     if (!formData.ownerId) {
       newErrors.ownerId = "Store owner is required";
     }
@@ -84,7 +82,7 @@ const AddStore = () => {
     setIsLoading(true);
     
     try {
-      // Convert ownerId to number since it might be a string from the select
+
       const storeData = {
         ...formData,
         ownerId: parseInt(formData.ownerId)

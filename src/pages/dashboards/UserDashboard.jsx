@@ -13,18 +13,17 @@ const UserDashboard = () => {
   const [stores, setStores] = useState([]);
 
   useEffect(() => {
-    // Fetch stores and enhance with ratings
+    
     if (currentUser?.id) {
       const allStores = getStores();
       
-      // Add user's rating and average rating to each store
+      
       const enhancedStores = allStores.map(store => ({
         ...store,
         userRating: getUserRatingForStore(store.id, currentUser.id),
         averageRating: getAverageRatingForStore(store.id)
       }));
-      
-      // Sort: first rated by user, then others
+
       const sortedStores = [...enhancedStores].sort((a, b) => {
         if (a.userRating && !b.userRating) return -1;
         if (!a.userRating && b.userRating) return 1;

@@ -19,7 +19,7 @@ const ManageUsers = () => {
   });
 
   useEffect(() => {
-    // Fetch all users
+   
     const allUsers = getUsers();
     setUsers(allUsers);
     setFilteredUsers(allUsers);
@@ -27,8 +27,7 @@ const ManageUsers = () => {
 
   const applyFilters = () => {
     let result = [...users];
-    
-    // Apply each filter
+
     if (filters.name) {
       result = result.filter(user => 
         user.name.toLowerCase().includes(filters.name.toLowerCase())
@@ -59,14 +58,14 @@ const ManageUsers = () => {
   const requestSort = (key) => {
     let direction = "ascending";
     
-    // If already sorting by this key, toggle direction
+    
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
     
     setSortConfig({ key, direction });
     
-    // Sort the filtered users
+   
     const sortedUsers = [...filteredUsers].sort((a, b) => {
       if (a[key] < b[key]) {
         return direction === "ascending" ? -1 : 1;

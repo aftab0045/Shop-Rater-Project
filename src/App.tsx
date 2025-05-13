@@ -1,5 +1,4 @@
-// This file is now deprecated in favor of App.jsx
-// Keeping minimal version to avoid conflicts
+
 
 import { BrowserRouter } from "react-router-dom";
 

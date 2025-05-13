@@ -18,7 +18,8 @@ const ManageStores = () => {
   });
 
   useEffect(() => {
-    // Fetch all stores and enhance with average rating
+    
+
     const allStores = getStores().map(store => ({
       ...store,
       averageRating: getAverageRatingForStore(store.id)
@@ -31,7 +32,7 @@ const ManageStores = () => {
   const applyFilters = () => {
     let result = [...stores];
     
-    // Apply each filter
+  
     if (filters.name) {
       result = result.filter(store => 
         store.name.toLowerCase().includes(filters.name.toLowerCase())
@@ -56,14 +57,14 @@ const ManageStores = () => {
   const requestSort = (key) => {
     let direction = "ascending";
     
-    // If already sorting by this key, toggle direction
+
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
     
     setSortConfig({ key, direction });
     
-    // Special case for average rating which is a string
+  
     if (key === "averageRating") {
       const sortedStores = [...filteredStores].sort((a, b) => {
         const ratingA = parseFloat(a[key]);
@@ -82,7 +83,7 @@ const ManageStores = () => {
       return;
     }
     
-    // Sort for other fields
+
     const sortedStores = [...filteredStores].sort((a, b) => {
       if (a[key] < b[key]) {
         return direction === "ascending" ? -1 : 1;

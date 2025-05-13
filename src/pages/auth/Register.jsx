@@ -32,7 +32,7 @@ const Register = () => {
   const validate = () => {
     const newErrors = {};
     
-    // Name validation (20-60 characters)
+    
     if (!formData.name) {
       newErrors.name = "Name is required";
     } else if (formData.name.length < 20) {
@@ -41,21 +41,21 @@ const Register = () => {
       newErrors.name = "Name cannot exceed 60 characters";
     }
     
-    // Email validation
+
     if (!formData.email) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
     
-    // Address validation (max 400 characters)
+   
     if (!formData.address) {
       newErrors.address = "Address is required";
     } else if (formData.address.length > 400) {
       newErrors.address = "Address cannot exceed 400 characters";
     }
     
-    // Password validation (8-16 chars, uppercase, special char)
+   
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 8 || formData.password.length > 16) {
@@ -66,7 +66,7 @@ const Register = () => {
       newErrors.password = "Password must contain at least one special character";
     }
     
-    // Confirm password validation
+ 
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = "Please confirm your password";
     } else if (formData.password !== formData.confirmPassword) {
@@ -87,7 +87,7 @@ const Register = () => {
     try {
       const result = await register({
         ...formData,
-        role: "user" // Normal users can only register as "user"
+        role: "user" 
       });
       
       if (result.success) {

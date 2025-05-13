@@ -31,7 +31,7 @@ const ChangePassword = () => {
       newErrors.currentPassword = "Current password is required";
     }
     
-    // Password validation (8-16 chars, uppercase, special char)
+    
     if (!formData.newPassword) {
       newErrors.newPassword = "New password is required";
     } else if (formData.newPassword.length < 8 || formData.newPassword.length > 16) {
@@ -68,7 +68,7 @@ const ChangePassword = () => {
           description: "Your password has been successfully updated",
         });
         
-        // Reset form
+   
         setFormData({
           currentPassword: "",
           newPassword: "",

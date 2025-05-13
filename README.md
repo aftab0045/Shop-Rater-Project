@@ -1,73 +1,54 @@
-# Welcome to your Lovable project
+# StoreRater 🛍️⭐
 
-## Project info
+**StoreRater** is a web-based platform that allows users to rate stores and view their performance. It includes role-based access control with different dashboards and permissions for each user type.
 
-**URL**: https://lovable.dev/projects/3b413375-da84-42d8-9966-600d89477f22
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### 👥 Role-Based Access
+- **Admin**: Manage users and stores, view system stats.
+- **Normal User**: Register, log in, browse stores, and submit ratings.
+- **Store Owner**: View store-specific ratings and customer feedback.
 
-**Use Lovable**
+### 📊 Dashboards
+- View total number of users, stores, and ratings (Admin).
+- Track average ratings and customer interactions (Store Owner).
+- Easily browse and rate stores (User).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3b413375-da84-42d8-9966-600d89477f22) and start prompting.
+### 🔐 Authentication
+- Secure login for all roles with proper validations.
+- Password update functionality after login.
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔍 Store Interaction
+- Search and filter stores by name or address.
+- Submit and edit your own ratings (1 to 5 stars).
+- View overall store ratings and personal submitted rating.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🧪 Form Validations
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Name**: 20–60 characters
+- **Address**: Max 400 characters
+- **Password**: 8–16 characters with at least 1 uppercase letter and 1 special character
+- **Email**: Must be valid
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📷 Screenshots
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+> Add screenshots here:
+- Login Page
+- Store List Page
+- Dashboard (Admin / Store Owner / User)
+- Rating Form
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 🔧 How to Run
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/3b413375-da84-42d8-9966-600d89477f22) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/storerater.git
+cd storerater

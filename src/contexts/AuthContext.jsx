@@ -6,7 +6,6 @@ const AuthContext = createContext({});
 
 export const useAuth = () => useContext(AuthContext);
 
-// Initial demo users
 const DEMO_USERS = [
   { id: 1, name: 'Admin User', email: 'admin@example.com', password: 'Admin123!', address: '123 Admin St', role: 'admin' },
   { id: 2, name: 'Store Owner', email: 'store@example.com', password: 'Store123!', address: '456 Store Ave', role: 'store_owner' },
@@ -23,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is logged in from localStorage
+
     const storedUser = localStorage.getItem('currentUser');
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     
@@ -34,19 +33,18 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Save users to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('registeredUsers', JSON.stringify(users));
   }, [users]);
 
   const login = (email, password) => {
-    // Check both demo users and registered users
+    
     const user = users.find(
       (user) => user.email === email && user.password === password
     );
 
     if (user) {
-      // Don't store the password in localStorage
+      
       const { password, ...userWithoutPassword } = user;
       
       setCurrentUser(userWithoutPassword);
@@ -72,7 +70,7 @@ export const AuthProvider = ({ children }) => {
       return { success: false, message: 'Email already in use' };
     }
     
-    // Add new user with role 'user' by default
+ 
     const newUser = {
       id: users.length + 1,
       ...userData,
@@ -102,7 +100,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updatePassword = (currentPassword, newPassword) => {
-    // In a real app, this would verify the current password and update
+   
+
+
+    
     toast({
       title: "Password updated",
       description: "Your password has been successfully updated",

@@ -9,37 +9,36 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { DataProvider } from "./contexts/DataContext";
 
-// Layout
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 
-// Authentication Pages
+
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 
-// Role-based Dashboard Pages
+
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import StoreOwnerDashboard from "./pages/dashboards/StoreOwnerDashboard";
 import UserDashboard from "./pages/dashboards/UserDashboard";
 
-// Admin Pages
+
 import ManageUsers from "./pages/admin/ManageUsers";
 import ManageStores from "./pages/admin/ManageStores";
 import AddUser from "./pages/admin/AddUser";
 import AddStore from "./pages/admin/AddStore";
 
-// User Pages
+
 import StoreList from "./pages/stores/StoreList";
 import StoreDetails from "./pages/stores/StoreDetails";
 
-// Profile Pages
+
 import ChangePassword from "./pages/profile/ChangePassword";
 import UserProfile from "./pages/profile/UserProfile";
 
-// Other Pages
+
 import NotFound from "./pages/NotFound";
 
-// Protected Route Component
+
 const ProtectedRoute = ({ element, allowedRoles }) => {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const userRole = localStorage.getItem("userRole");
@@ -49,7 +48,7 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   }
   
   if (allowedRoles && !allowedRoles.includes(userRole)) {
-    // Redirect to appropriate dashboard based on role
+  
     if (userRole === "admin") {
       return <Navigate to="/dashboard/admin" />;
     } else if (userRole === "store_owner") {
@@ -62,7 +61,7 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   return element;
 };
 
-// Create the query client outside of the component
+
 const queryClient = new QueryClient();
 
 const App = () => {

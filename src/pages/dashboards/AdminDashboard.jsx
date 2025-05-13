@@ -32,7 +32,7 @@ const AdminDashboard = () => {
   });
 
   useEffect(() => {
-    // Fetch the dashboard stats
+    
     const fetchStats = () => {
       const data = getStats();
       setStats(data);

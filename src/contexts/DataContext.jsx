@@ -6,7 +6,8 @@ const DataContext = createContext({});
 
 export const useData = () => useContext(DataContext);
 
-// Mock data
+
+
 const DEMO_STORES = [
   { 
     id: 1, 
@@ -53,7 +54,7 @@ export const DataProvider = ({ children }) => {
   const [users, setUsers] = useState(DEMO_USERS);
   const { toast } = useToast();
 
-  // Store methods
+  
   const getStores = () => {
     return stores;
   };
@@ -83,7 +84,7 @@ export const DataProvider = ({ children }) => {
     return { success: true, storeId: newStore.id };
   };
 
-  // User methods
+
   const getUsers = () => {
     return users;
   };
@@ -108,18 +109,19 @@ export const DataProvider = ({ children }) => {
     return { success: true, userId: newUser.id };
   };
 
-  // Rating methods
+
+
   const submitRating = (storeId, userId, rating) => {
     const updatedStores = stores.map(store => {
       if (store.id === storeId) {
-        // Find existing rating from this user if any
+        
         const existingRatingIndex = store.ratings.findIndex(r => r.userId === userId);
         
         if (existingRatingIndex >= 0) {
-          // Update existing rating
+          
           store.ratings[existingRatingIndex].rating = rating;
         } else {
-          // Add new rating
+         
           store.ratings.push({ userId, rating });
         }
       }
@@ -165,7 +167,7 @@ export const DataProvider = ({ children }) => {
     });
   };
 
-  // Stats methods
+
   const getStats = () => {
     return {
       totalUsers: users.filter(user => user.role !== 'admin').length,
@@ -175,24 +177,23 @@ export const DataProvider = ({ children }) => {
   };
 
   const value = {
-    // Store methods
+    
     getStores,
     getStoreById,
     getStoresByOwnerId,
     addStore,
     
-    // User methods
     getUsers,
     getUserById,
     addUser,
     
-    // Rating methods
+   
     submitRating,
     getUserRatingForStore,
     getAverageRatingForStore,
     getUsersWhoRatedStore,
     
-    // Stats methods
+
     getStats
   };
 
