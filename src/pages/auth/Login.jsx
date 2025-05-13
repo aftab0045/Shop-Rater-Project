@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "../../components/ui/use-toast";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -74,80 +76,82 @@ const Login = () => {
     }
   };
 
-  const demoCredentials = [
-    { role: "Admin", email: "admin@example.com", password: "Admin123!" },
-    { role: "Store Owner", email: "store@example.com", password: "Store123!" },
-    { role: "User", email: "user@example.com", password: "User123!" }
-  ];
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center min-h-[80vh]">
       <div className="w-full max-w-md">
-        <Card>
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">Login to StoreRater</CardTitle>
-            <CardDescription className="text-center">
+        <Card className="shadow-lg border-blue-100">
+          <CardHeader className="space-y-1 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
+            <CardTitle className="text-2xl font-bold text-center text-blue-800">Login to StoreRater</CardTitle>
+            <CardDescription className="text-center text-blue-600">
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
           
           <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pt-6">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-blue-700">Email</Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="border-blue-200 focus-visible:ring-blue-400"
                 />
                 {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
               </div>
               
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password" className="text-blue-700">Password</Label>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border-blue-200 focus-visible:ring-blue-400 pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleShowPassword}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600"
+                  >
+                    {showPassword ? 
+                      <EyeOffIcon className="h-4 w-4" /> : 
+                      <EyeIcon className="h-4 w-4" />
+                    }
+                  </button>
+                </div>
                 {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
               </div>
             </CardContent>
             
-            <CardFooter className="flex flex-col">
-              <Button type="submit" className="w-full" disabled={isLoading}>
+            <CardFooter className="flex flex-col pt-0">
+              <Button 
+                type="submit" 
+                className="w-full bg-blue-600 hover:bg-blue-700" 
+                disabled={isLoading}
+              >
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
               
-              <p className="mt-4 text-center text-sm text-gray-500">
+              <p className="mt-4 text-center text-sm text-gray-600">
                 Don't have an account?{" "}
-                <Link to="/register" className="text-blue-600 hover:underline">
+                <Link to="/register" className="text-blue-600 hover:underline font-medium">
                   Register
                 </Link>
               </p>
             </CardFooter>
           </form>
         </Card>
-        
-        {/* Demo credentials box */}
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
-          <h3 className="font-medium text-blue-800 mb-2">Demo Credentials</h3>
-          <div className="space-y-2">
-            {demoCredentials.map((cred, index) => (
-              <div key={index} className="grid grid-cols-3 text-sm">
-                <span className="font-medium">{cred.role}:</span>
-                <span className="text-gray-600">{cred.email}</span>
-                <span className="text-gray-600">{cred.password}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
