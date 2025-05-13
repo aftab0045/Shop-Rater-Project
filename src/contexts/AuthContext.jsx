@@ -6,6 +6,7 @@ const AuthContext = createContext({});
 
 export const useAuth = () => useContext(AuthContext);
 
+// Initial demo users
 const DEMO_USERS = [
   { id: 1, name: 'Admin User', email: 'admin@example.com', password: 'Admin123!', address: '123 Admin St', role: 'admin' },
   { id: 2, name: 'Store Owner', email: 'store@example.com', password: 'Store123!', address: '456 Store Ave', role: 'store_owner' },
@@ -15,6 +16,10 @@ const DEMO_USERS = [
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState(() => {
+    const storedUsers = localStorage.getItem('registeredUsers');
+    return storedUsers ? JSON.parse(storedUsers) : DEMO_USERS;
+  });
   const { toast } = useToast();
 
   useEffect(() => {
@@ -29,9 +34,14 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  // Save users to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('registeredUsers', JSON.stringify(users));
+  }, [users]);
+
   const login = (email, password) => {
-    // For demo purposes using mock data
-    const user = DEMO_USERS.find(
+    // Check both demo users and registered users
+    const user = users.find(
       (user) => user.email === email && user.password === password
     );
 
@@ -56,16 +66,20 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = (userData) => {
-    // In a real app, this would be an API call
-    // For now, just simulate a successful registration
-    const existingUser = DEMO_USERS.find(user => user.email === userData.email);
+    const existingUser = users.find(user => user.email === userData.email);
     
     if (existingUser) {
       return { success: false, message: 'Email already in use' };
     }
     
-    // For demo, we'll just log the registration
-    console.log('User registered:', userData);
+    // Add new user with role 'user' by default
+    const newUser = {
+      id: users.length + 1,
+      ...userData,
+      role: 'user'
+    };
+    
+    setUsers(prevUsers => [...prevUsers, newUser]);
     
     toast({
       title: "Registration successful",
@@ -99,6 +113,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
+    users,
     login,
     register,
     logout,
