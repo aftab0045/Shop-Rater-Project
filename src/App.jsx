@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -61,17 +62,16 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   return element;
 };
 
+// Create the query client outside of the component
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AuthProvider>
-          <DataProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
+      <AuthProvider>
+        <DataProvider>
+          <BrowserRouter>
+            <TooltipProvider>
               <Routes>
                 {/* Auth Routes */}
                 <Route path="/" element={<AuthLayout />}>
@@ -127,10 +127,12 @@ const App = () => {
                 {/* 404 Route */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
-            </BrowserRouter>
-          </DataProvider>
-        </AuthProvider>
-      </TooltipProvider>
+              <Toaster />
+              <Sonner />
+            </TooltipProvider>
+          </BrowserRouter>
+        </DataProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 };
