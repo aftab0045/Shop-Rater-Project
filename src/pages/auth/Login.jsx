@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -81,34 +80,34 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh]">
-      <div className="w-full max-w-md">
-        <Card className="shadow-lg border-blue-100">
-          <CardHeader className="space-y-1 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
-            <CardTitle className="text-2xl font-bold text-center text-blue-800">Login to StoreRater</CardTitle>
-            <CardDescription className="text-center text-blue-600">
+    <div className="flex justify-center items-center min-h-[80vh] px-4">
+      <div className="w-full max-w-lg">
+        <Card className="shadow-lg border-blue-100 p-2">
+          <CardHeader className="space-y-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg py-8">
+            <CardTitle className="text-3xl font-bold text-center text-blue-800">Login to StoreRater</CardTitle>
+            <CardDescription className="text-center text-blue-600 text-lg">
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
           
           <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-4 pt-6">
+            <CardContent className="space-y-6 pt-8 px-8">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-blue-700">Email</Label>
+                <Label htmlFor="email" className="text-blue-700 text-lg">Email</Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="border-blue-200 focus-visible:ring-blue-400"
+                  className="border-blue-200 focus-visible:ring-blue-400 py-6"
                 />
                 {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
               </div>
               
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="text-blue-700">Password</Label>
+                  <Label htmlFor="password" className="text-blue-700 text-lg">Password</Label>
                 </div>
                 <div className="relative">
                   <Input
@@ -117,7 +116,7 @@ const Login = () => {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="border-blue-200 focus-visible:ring-blue-400 pr-10"
+                    className="border-blue-200 focus-visible:ring-blue-400 pr-10 py-6"
                   />
                   <button
                     type="button"
@@ -125,8 +124,8 @@ const Login = () => {
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600"
                   >
                     {showPassword ? 
-                      <EyeOffIcon className="h-4 w-4" /> : 
-                      <EyeIcon className="h-4 w-4" />
+                      <EyeOffIcon className="h-5 w-5" /> : 
+                      <EyeIcon className="h-5 w-5" />
                     }
                   </button>
                 </div>
@@ -134,16 +133,16 @@ const Login = () => {
               </div>
             </CardContent>
             
-            <CardFooter className="flex flex-col pt-0">
+            <CardFooter className="flex flex-col pt-2 pb-6 px-8">
               <Button 
                 type="submit" 
-                className="w-full bg-blue-600 hover:bg-blue-700" 
+                className="w-full bg-blue-600 hover:bg-blue-700 py-6 text-lg" 
                 disabled={isLoading}
               >
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
               
-              <p className="mt-4 text-center text-sm text-gray-600">
+              <p className="mt-6 text-center text-base text-gray-600">
                 Don't have an account?{" "}
                 <Link to="/register" className="text-blue-600 hover:underline font-medium">
                   Register
